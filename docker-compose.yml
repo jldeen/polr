@@ -1,0 +1,59 @@
+version: '3'
+ 
+services:
+  db:
+    image: mysql/mysql-server:8.0.13
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecretdbpass0rd
+      MYSQL_DATABASE: polr
+      MYSQL_USER: root
+      MYSQL_PASSWORD: supersecretdbpass0rd
+    ports:
+      - "3306:3306"
+    # volumes:
+    #   - ./mysql:/var/lib/mysql
+  phpmyadmin:
+    image: linuxserver/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8099:80
+  polr:
+    # image: jldeen/polr
+    build:
+      context: .
+    depends_on:
+      - db
+      - phpmyadmin
+    ports:
+        - '8080:8080'
+    environment:
+        # - POLR_SETUP_RAN=false
+        - APP_NAME="ECS Shortener"
+        - SETTING_ADV_ANALYTICS=true
+        - POLR_BASE=62
+        - POLR_ALLOW_ACCT_CREATION=true
+        - SETTING_SHORTEN_PERMISSION=true
+        - APP_PROTOCOL=http://
+        - DB_HOST=db:3306 #your docker host IP
+        - DB_DATABASE=polr
+        - DB_USERNAME=root
+        - DB_PASSWORD=supersecretdbpass0rd
+        - APP_ADDRESS=localhost:8080
+        - ADMIN_USERNAME=admin
+        - ADMIN_PASSWORD=admin
+        - MAXMIND_LICENSE_KEY=qVcjYLC3o5cdeTxM
+        - SETTING_PSEUDORANDOM_ENDING=true
+        - VERSION=2.3.0
+        - VERSION_RELMONTH=October
+        - VERSION_RELDAY=5
+        - VERSION_RELYEAR=2022
+volumes:
+  dbdata:

@@ -298,4 +298,8 @@ Setup
 <script src='/js/angular.min.js'></script>
 <script src='/js/base.js'></script>
 <script src='/js/SetupCtrl.js'></script>
+<script src="/js/jquery.min.js"></script>	
+<script src="/js/aws-sdk-2.487.0.min.js"></script>
+<script src="/js/aws-cognito-sdk.min.js"></script>
+<script src="/js/amazon-cognito-identity.min.js"></script>
 @endsection

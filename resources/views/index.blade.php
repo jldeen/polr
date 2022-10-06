@@ -45,8 +45,26 @@
 <div id='tips' class='text-muted tips'>
     <i class='fa fa-spinner'></i> Loading Tips...
 </div>
+
+<div class='setup-footer well'>
+    Polr is <a href='https://opensource.org/osd' target='_blank'>open-source
+    software</a> licensed under the <a href='//www.gnu.org/copyleft/gpl.html'>GPLv2+
+    License</a>.
+
+    <div>
+        Polr Version {{env('VERSION')}} released {{env('VERSION_RELMONTH')}} {{env('VERSION_RELDAY')}}, {{env('VERSION_RELYEAR')}} -
+        <a href='//github.com/cydrobolt/polr' target='_blank'>Github</a>
+
+        <div class='footer-well'>
+            &copy; Copyright {{env('VERSION_RELYEAR')}}
+            <a class='footer-link' href='//cydrobolt.com' target='_blank'>Chaoyi Zha</a> &amp;
+            <a class='footer-link' href='//github.com/Cydrobolt/polr/graphs/contributors' target='_blank'>other Polr contributors</a>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
 <script src='js/index.js'></script>
 @endsection
+
